@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm" style="margin-top: 10px; margin-bottom: 10px"><button type="button" class="btn btn-outline-primary">New <i class="fas fa-plus"></i></button></div>
+  </div>
+  <div class="row">
+    <% @lifts.each do |lift| %>
+      <div class='col-6 col-sm-4' style="margin-top: 10px">
+        <div class="card rounded-sm">
+          <div class="card-body">
+            <h3><%= link_to lift.name, url(:lifts, :index, :id => lift.id) %></h3>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
