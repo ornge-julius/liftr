@@ -43,4 +43,14 @@ Liftr::App.controllers :lifts do
     end
   end
 
+  post :destroy, :with => :id do
+    @lift = Lift.first({'id': params[:id]})
+    if @lift.destroy
+      flash[:success] = "Lift deleted"
+      redirect(url(:lifts, :index))
+    else 
+      flash.now[:error] = "An error occured"
+      render 'lifts/index'
+    end
+  end
 end
