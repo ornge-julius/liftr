@@ -33,7 +33,14 @@ Liftr::App.controllers :lifts do
   end
 
   post :create do
-
+    @lift = Lift.new(:name => params[:array][:name], :user_id => 1)
+    if @lift.save
+      flash[:success] = "Lft created"
+      redirect(url(:lifts, :index))
+    else 
+      flash.now[:error] = "An error occured"
+      render 'lifts/index'
+    end
   end
 
 end
