@@ -3,7 +3,23 @@ module Liftr
     use IdentityMap
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Admin::AccessControl
+    
+    set :admin_model, 'Account'
+    set :login_page, '/auth/login'
+
     enable :sessions
+    access_control.roles_for :any do |role|
+        role.protect '/'
+        role.protect '/lifts'
+        role.allow '/auth'
+    end
+
+    access_control.roles_for :admin do |role|
+        role.project_module :accounts, '/accounts'
+    end
+
+
 
     ##
     # Caching support.
