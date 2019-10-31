@@ -1,6 +1,6 @@
 Liftr::App.controllers :auth do
 	get :login do 
-		render "/auth/login"
+		render "/auth/login", nil, :layout => false
 	end
 
 	post :create do
