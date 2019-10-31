@@ -21,6 +21,7 @@ Liftr::App.controllers :lifts do
   
   get :index do
     @lifts = Lift.all.sort_by{ |lift| lift.name}
+    @title = "Liftr"
     #binding.pry
     render 'lifts/index'
   end
@@ -35,7 +36,7 @@ Liftr::App.controllers :lifts do
   post :create do
     @lift = Lift.new(:name => params[:array][:name], :user_id => 1)
     if @lift.save
-      flash[:success] = "Lft created"
+      flash[:success] = "Lift created"
       redirect(url(:lifts, :index))
     else 
       flash.now[:error] = "An error occured"
@@ -43,6 +44,7 @@ Liftr::App.controllers :lifts do
     end
   end
 
+  #Cascade deletes fail
   post :destroy, :with => :id do
     @lift = Lift.first({'id': params[:id]})
     if @lift.destroy

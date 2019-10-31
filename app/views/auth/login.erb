@@ -11,8 +11,13 @@
     <title><%= @title.present? ? "#{@title} | Padrino Admin" : "#{pat('login.title')} | Padrino Admin" %></title>
     <%= favicon_tag "favicon.ico" %>
     <%= stylesheet_link_tag "bootstrap", "application" %>
+
   </head>
   <body>
+    <div class="jumbotron mx-auto bg-primary">
+      <h1 class="display-4" style="text-align: center; color: white">Liftr</h1>
+    </div>
+
     <% form_tag url(:auth, :create) do %>
         <%= {:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe %>
         <div class="form-group col-sm-7 mx-auto" style="padding-top: 20px">

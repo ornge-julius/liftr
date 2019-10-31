@@ -11,7 +11,6 @@ module Liftr
     enable :sessions
     access_control.roles_for :any do |role|
         role.protect '/'
-        role.protect '/lifts'
         role.allow '/auth'
     end
 
