@@ -1,6 +1,6 @@
 class Entry
   include DataMapper::Resource
-
+  #TODO: need to verify feilds are correct types
   # property <name>, <type>
   property :id, Serial
   property :weight, Integer

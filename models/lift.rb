@@ -1,6 +1,7 @@
 class Lift
   include DataMapper::Resource
   
+  #TODO: Need to verify fields are correct types (i.e. integers or strings)
   # property <name>, <type>
   property :id, Serial
   property :name, String

@@ -21,13 +21,14 @@ Liftr::App.controllers :entries do
   
   post :create, :with => :lift_id do
     @lift = Lift.first({'id': params[:lift_id]})
-    @entry = Entry.new(:lift_id => params[:lift_id], :weight => params[:entry][:weight])
+    binding.pry
+    @entry = Entry.new(:lift_id => params[:lift_id], :weight => params[:entry][:weight].to_i)
     if @entry.save
       flash[:success] = "Lift created"
       redirect(url(:lifts, :index, :id => @lift.id))
     else 
       flash.now[:error] = "An error occured"
-      render 'lifts/' + @lift.id
+      render 'lifts/' + @lift.id.to_s
     end
   end
 
