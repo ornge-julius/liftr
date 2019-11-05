@@ -34,7 +34,7 @@ Liftr::App.controllers :lifts do
   end
 
   post :create do
-    @lift = Lift.new(:name => params[:array][:name], :user_id => 1)
+    @lift = Lift.new(:name => params[:array][:name], :user_id => current_account.id)
     if @lift.save
       flash[:success] = "Lift created"
       redirect(url(:lifts, :index))
@@ -47,12 +47,13 @@ Liftr::App.controllers :lifts do
   #Cascade deletes fail
   post :destroy, :with => :id do
     @lift = Lift.first({'id': params[:id]})
+    @lift.cascade
+    @lift.reload
     if @lift.destroy
       flash[:success] = "Lift deleted"
       redirect(url(:lifts, :index))
     else 
       flash.now[:error] = "An error occured"
-      render 'lifts/index'
     end
   end
 end
