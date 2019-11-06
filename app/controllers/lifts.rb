@@ -27,9 +27,8 @@ Liftr::App.controllers :lifts do
   end
 
   get :index, :with => :id do
-    @lift = Lift.first({'id': params[:id]}, 'user_id': current_account.id)
+    @lift = Lift.first('id': params[:id], 'user_id': current_account.id)
     @entries = @lift.entries.sort_by{ |ent| ent.date }.reverse
-    #binding.pry
     render 'lifts/lift'
   end
 
@@ -46,7 +45,7 @@ Liftr::App.controllers :lifts do
 
   #Cascade deletes fail
   post :destroy, :with => :id do
-    @lift = Lift.first({'id': params[:id], 'user_id': current_account.id})
+    @lift = Lift.first('id': params[:id], 'user_id': current_account.id)
     @lift.cascade
     @lift.reload
     if @lift.destroy

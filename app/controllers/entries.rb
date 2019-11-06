@@ -21,7 +21,6 @@ Liftr::App.controllers :entries do
   
   post :create, :with => :lift_id do
     @lift = Lift.first({'id': params[:lift_id]})
-    binding.pry
     @entry = Entry.new(:lift_id => params[:lift_id], :weight => params[:entry][:weight].to_i)
     if @entry.save
       flash[:success] = "Lift created"
