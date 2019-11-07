@@ -19,9 +19,10 @@ Liftr::App.controllers :entries do
   #   'Hello world!'
   # end
   
+  #TODO Make sure in prod you backload entries with dates
   post :create, :with => :lift_id do
     @lift = Lift.first({'id': params[:lift_id]})
-    @entry = Entry.new(:lift_id => params[:lift_id], :weight => params[:entry][:weight].to_i)
+    @entry = Entry.new(:lift_id => params[:lift_id], :weight => params[:entry][:weight].to_i, :date => Time.now.strftime("%Y-%m-%d %H:%M:%S"))
     if @entry.save
       flash[:success] = "Lift created"
       redirect(url(:lifts, :index, :id => @lift.id))
