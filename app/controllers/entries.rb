@@ -42,4 +42,15 @@ Liftr::App.controllers :entries do
     @entry.to_json
   end
 
+
+  post :destroy, :with => :id do
+    @entry = Entry.first('id': params[:id])
+    @lift_id = @entry.lift_id
+    if @entry.destroy
+      flash[:success] = "Entry deleted"
+      redirect(url(:lifts, :index, :id => @lift_id))
+    else 
+      flash.now[:error] = "An error occured"
+    end
+  end
 end

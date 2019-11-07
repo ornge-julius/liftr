@@ -18,7 +18,15 @@
             <div class="card-title"><h3><%= entry.weight %> lbs</h3></div>
           </div>
           <div class="card-footer">
-            <small class="text-muted mx-auto float-bottom"><%= entry.date %></small>
+            <div class='card-link'>
+              
+              <small class="text-muted mx-auto float-bottom"><%= entry.date %></small>
+            </div>
+            <div class="card-link float-right">
+              
+              <%= button_to(:delete, url(:entries, :destroy, :id => entry.id), :method => :post, :submit_options => {:type => :submit, :class => 'btn btn-danger'}) {tag_icon(:'far fa-trash-alt')} %>
+            </div>
+
           </div>            
         </div>
       </div>
