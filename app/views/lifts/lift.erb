@@ -15,8 +15,11 @@
       <div class='col-12 col-sm-4' style="margin-top: 10px">
         <div class="card rounded-sm">
           <div class="card-body">
-            <h3><%= entry.weight %> lbs</h3>
+            <div class="card-title"><h3><%= entry.weight %> lbs</h3></div>
           </div>
+          <div class="card-footer">
+            <small class="text-muted mx-auto float-bottom"><%= entry.date %></small>
+          </div>            
         </div>
       </div>
     <% end %>
