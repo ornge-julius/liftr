@@ -19,7 +19,7 @@
       <%= link_to 'Liftr', url(:lifts, :index), :class => 'navbar-brand', :title => 'Liftr' %>
       <ul class="nav navbar-nav pull-right">
         <li class=navbar-logout>
-          <%= button_to(:logout, url(:auth, :destroy), :method => :delete, :class => 'navbar-nav-form', :submit_options => { :type => :submit, :title => pat(:logout), :class => 'navbar-nav-form-link' }) { tag_icon(:'fas fa-sign-out') } %>
+          <%= button_to(:logout, url(:auth, :destroy), :method => :delete, :submit_options => { :type => :submit, :title => pat(:logout) }) { tag_icon(:'fas fa-sign-out-alt') } %>
         </li>
       </ul>
     </nav>
